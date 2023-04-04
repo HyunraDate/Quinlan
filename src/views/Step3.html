@@ -1,0 +1,99 @@
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oh!! Look at me!</title>
+    <link rel="stylesheet" href="./css/Step3.Ai.css" />
+    <script src="node_modules/echarts/dist/echarts.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.1/echarts.min.js"
+      integrity="sha512-OTbGFYPLe3jhy4bUwbB8nls0TFgz10kn0TLkmyA+l3FyivDs31zsXCjOis7YGDtE2Jsy0+fzW+3/OVoPVujPmQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      #main {
+        width: 75%;
+      }
+      @media screen and (min-width: 1024px) {
+        #main {
+          width: 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-col items-center page">
+      <span class="text">Oh!</span>
+      <a href="./Step4.html" target="_self"
+        ><img class="image" src="images/wrong.P.png" />
+      </a>
+      <span class="text_2">B ist richtig</span>
+    </div>
+    <!--为Chart准备定义了宽高的DOM-->
+    <div class="echarts-container">
+      <div id="main" style="margin: 0 auto"></div>
+    </div>
+    <script type="text/javascript">
+      const main = document.getElementById("main");
+      const height = document.documentElement.clientHeight;
+      // main.style.width = "50%";
+      main.style.height = "100%";
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(main);
+
+      // 指定图表的配置项和数据
+      var option = {
+        title: {
+          text: "Umfrage",
+          color: "#FE9637",
+        },
+        tooltip: {},
+        legend: {
+          data: ["Auswahl"],
+        },
+        xAxis: {
+          data: ["A", "B", "C", "D"],
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "Auswahl",
+            type: "bar",
+            data: [5, 19, 13, 27],
+            itemStyle: {
+              //通常情况下：
+              normal: {
+                //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+                color: function (params) {
+                  var colorList = [
+                    "#ff715e",
+                    "#ffaf51",
+                    "#ffee51",
+                    "#8c6ac4",
+                    "#715c87",
+                  ];
+                  return colorList[params.dataIndex];
+                },
+              },
+              //鼠标悬停时：
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(251, 161, 72, 0.66)",
+              },
+            },
+          },
+        ],
+      };
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+
+      window.onresize = function () {
+        myChart.resize();
+        document.body.width = "100vw";
+      };
+    </script>
+  </body>
+</html>

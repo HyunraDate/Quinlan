@@ -1,0 +1,240 @@
+/************************************************************
+** 请将全局样式拷贝到项目的全局 CSS 文件或者当前页面的顶部 **
+** 否则页面将无法正常显示                                  **
+************************************************************/
+
+html {
+    font-size: 16px;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  body * {
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .justify-start {
+    justify-content: flex-start;
+  }
+  
+  .justify-end {
+    justify-content: flex-end;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .justify-around {
+    justify-content: space-around;
+  }
+  
+  .justify-evenly {
+    justify-content: space-evenly;
+  }
+  
+  .items-start {
+    align-items: flex-start;
+  }
+  
+  .items-end {
+    align-items: flex-end;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .items-baseline {
+    align-items: baseline;
+  }
+  
+  .items-stretch {
+    align-items: stretch;
+  }
+  
+  .self-start {
+    align-self: flex-start;
+  }
+  
+  .self-end {
+    align-self: flex-end;
+  }
+  
+  .self-center {
+    align-self: center;
+  }
+  
+  .self-baseline {
+    align-self: baseline;
+  }
+  
+  .self-stretch {
+    align-self: stretch;
+  }
+  
+  .flex-1 {
+    flex: 1 1 0%;
+  }
+  
+  .flex-auto {
+    flex: 1 1 auto;
+  }
+  
+  .grow {
+    flex-grow: 1;
+  }
+  
+  .grow-0 {
+    flex-grow: 0;
+  }
+  
+  .shrink {
+    flex-shrink: 1;
+  }
+  
+  .shrink-0 {
+    flex-shrink: 0;
+  }
+  
+  .relative {
+    position: relative;
+  }
+
+  .page {
+    padding: 10.63rem 2.88rem 32.69rem 3.44rem;
+    background-color: #ffffff;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+  }
+  .space-y-10 > *:not(:first-child) {
+    margin-top: 0.63rem;
+  }
+  .text {
+    color: #000000;
+    font-size: 1.38rem;
+    font-family: Inter;
+    line-height: 1.34rem;
+    font-family: 'Work Sans', sans-serif;
+  }
+  .group {
+    padding-top: 1.31rem;
+    height: 9.88rem;
+  }
+  .text-wrapper {
+    margin-right: 0.94rem;
+    padding: 2.25rem 0 1.75rem;
+    background-color: #cfbeff;
+    border-radius: 0.63rem;
+  }
+  .text_2 {
+    margin: 0 1.25rem;
+    color: #000000;
+    font-size: 1rem;
+    font-family: Inter;
+    line-height: 1.19rem;
+    font-family: 'Work Sans', sans-serif;
+  }
+  .image {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  .pos_3 {
+    position: absolute;
+    right: 4.25rem;
+    top: 0;
+    border-radius: 50%; 
+    border:none;
+    }
+
+  .pos_3:hover{
+    border:2px solid #FE9637;
+    box-shadow:rgba(251, 161, 72, 0.66) 0 0 5px;
+    transition:all .2s;
+    }
+    
+  .pos_2 {
+    position: absolute;
+    right: 6.19rem;
+    top: 0;
+    border-radius: 50%; 
+    border:none;
+    }
+
+  .pos_2:hover{
+    border:2px solid #FE9637;
+    box-shadow:rgba(251, 161, 72, 0.66) 0 0 5px;
+    transition:all .2s;
+    }
+
+  .pos {
+    position: absolute;
+    right: 8.13rem;
+    top: 0;
+    border-radius: 50%; 
+    border:none;
+    }
+
+  .pos:hover{
+    border:2px solid #FE9637;
+    box-shadow:rgba(251, 161, 72, 0.66) 0 0 5px;
+    transition:all .2s;
+    }
+
+  .pos_5 {
+    position: absolute;
+    right: 0.38rem;
+    top: 0;
+    border-radius: 50%; 
+    border:none;
+    }
+
+  .pos_5:hover{
+    border:2px solid #FE9637;
+    box-shadow:rgba(251, 161, 72, 0.66) 0 0 5px;
+    transition:all .2s;
+    }
+
+  .pos_4 {
+    position: absolute;
+    right: 2.31rem;
+    top: 0;
+    border-radius: 50%; 
+    border:none;
+    }
+
+  .pos_4:hover{
+    border:2px solid #FE9637;
+    box-shadow:rgba(251, 161, 72, 0.66) 0 0 5px;
+    transition:all .2s;
+    }
+
+  .image_2 {
+    width: 6.31rem;
+    height: 2.19rem;
+    margin-top: 0.63rem;
+  }

@@ -1,0 +1,88 @@
+<template>
+  <div id="umfrage">
+    <router-view/> <!--表示首页-->
+
+    
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
+  <HelloWorld msg="Vite + Vue" />
+</template>
+
+<script setup>
+//import HelloWorld from './components/HelloWorld.vue'
+</script>
+
+
+  <head>
+    <meta charset="UTF-8" />
+    
+
+    <title>Umfrage1</title>
+    <style>
+      a{
+      text-decoration: none;
+      }
+      </style>
+    <link rel="stylesheet" href="./Frame_halloween.css" />
+  </head>
+  <body>
+    <div class="flex-col page"> 
+      <div class="flex-col items-center">
+        <span class="font_1">Umfrage</span>
+        <br/>                
+
+        <body onload="run()">
+          wird in <span id="spanId" style="color:#FE9637">60</span>Sekunden springen!
+       </body>
+       <br>
+       <script type="text/javascript">
+           // 页面一加载完成，该方法就会执行
+           // 读秒，一秒钟数字改变一次
+           var x = 60;       
+           var select = "Step3.html";
+
+
+           function run(){
+               // 获取到的是span标签的对象
+               var span = document.getElementById("spanId");
+               // 获取span标签中间的文本
+               span.innerHTML = x;
+               x--;
+               // 再让run方法执行呢，一秒钟执行一次
+               if(x < 0)window.location = select;
+               else window.setTimeout("run()", 1000);
+           }
+           
+           function test(click){
+            select = click;
+          }
+ 
+           
+       </script>
+
+      </div>
+      <span class="text">
+        Welche Tragwirkung stellt sich in der monolithischen Deckenplatte infolge einer vertikalen, konstanten
+        Flächenlast ein?
+        <br/>
+      </span>
+ 
+      <div class="flex-col group space-y-22">
+        
+        <button class="flex-col justify-start items-center text-wrapper " type="submit" onclick='test("Step3.Ai.html")'>A: Kette von Einfeldträgern</button>
+        
+        <button class="flex-col justify-start items-center text-wrapper_2" type="button" onclick='test("Step3b.Ai.html")'>B: Durchlauftragwirkung</button>
+        
+        <button class="flex-col justify-start items-center text-wrapper_3" type="button" onclick='test("Step3.Ai.html")'>C: Normalkrafttragwirkung</button>
+
+        <button class="flex-col justify-start items-center text-wrapper_4"type="button" onclick='test("Step3.Ai.html")'>D: Scheibentragwirkung</button>
+        </div>
+      </div>
+    </div>
+  </body> 
+</html>

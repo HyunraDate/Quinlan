@@ -1,0 +1,436 @@
+/* 语法 @media mediaType and|not|only (media feature) {
+  /*CSS-Code;*/
+  /* 3、css中的vh和vm
+  vh和vm是相对视口区域的宽高，即浏览器可视区域
+  
+  vw：1vw等于视口宽度的1%。
+  vh：1vh等于视口高度的1%。
+  
+  使用场景：页面头部和尾部固定，中间内容若高度超出，则出现滚动条，但是整个页面不出现滚动条，
+  在此情况下就要计算中间内容的高度，可以使用vh解决 */
+
+  /* :root { why didnt work??
+  font-family: 'Work Sans', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  } */
+
+  /* // 最大宽度为1280 （width-max: 1280）*/
+  @media (width: 100vw) {
+
+
+    html {
+      font-size: 1.88rem;
+      font-weight: 500;
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    body {
+      background: pink;
+      height:100vh;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
+    }
+
+    body * {
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+    button {
+      border-width: 0px;
+      border-radius: 0.63rem;
+    }
+    button:hover{
+      border:2px solid #FE9637;
+      box-shadow:rgba(251, 161, 72, 0.66) 0 0 5px;
+      transition:all .2s;
+    }
+    .flex-row {
+      display: flex;
+      flex-direction: row;
+    }
+    
+    .flex-col {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .justify-start {
+      justify-content: flex-start;
+    }
+    
+    .justify-end {
+      justify-content: flex-end;
+    }
+    
+    .justify-center {
+      justify-content: center;
+    }
+    
+    .justify-between {
+      justify-content: space-between;
+    }
+    
+    .justify-around {
+      justify-content: space-around;
+    }
+    
+    .justify-evenly {
+      justify-content: space-evenly;
+    }
+    
+    .items-start {
+      align-items: flex-start;
+    }
+    
+    .items-end {
+      align-items: flex-end;
+    }
+    
+    .items-center {
+      align-items: center;
+    }
+    
+    .items-baseline {
+      align-items: baseline;
+    }
+    
+    .items-stretch {
+      align-items: stretch;
+    }
+    
+    .self-start {
+      align-self: flex-start;
+    }
+    
+    .self-end {
+      align-self: flex-end;
+    }
+    
+    .self-center {
+      align-self: center;
+    }
+    
+    .self-baseline {
+      align-self: baseline;
+    }
+    
+    .self-stretch {
+      align-self: stretch;
+    }
+    
+    .flex-1 {
+      flex: 1 1 0%;
+    }
+    
+    .flex-auto {
+      flex: 1 1 auto;
+    }
+    
+    .grow {
+      flex-grow: 1;
+    }
+    
+    .grow-0 {
+      flex-grow: 0;
+    }
+    
+    .shrink {
+      flex-shrink: 1;
+    }
+    
+    .shrink-0 {
+      flex-shrink: 0;
+    }
+    
+    .relative {
+      position: relative;
+    }
+  
+    .page {
+      padding: 8.63rem 3.38rem 16.31rem 4rem;
+      background-color: #ffffff;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: 100%;
+    }
+    .font_1 {
+      font-size: 1.38rem;
+      font-family: Inter;
+      line-height: 1.63rem;
+      color: #000000;
+      font-family: 'Work Sans', sans-serif;
+    }
+    .text {
+      margin-top: 2rem;
+      color: #000000;
+      font-size: 1.13rem;
+      font-family: Inter;
+      line-height: 1.38rem;
+      /* text-align: center; */
+      font-family: 'Work Sans', sans-serif;
+      
+    }
+    .group {
+      margin-top: 8.25rem;
+      padding: 0 1.88rem;
+    }
+    .space-y-22 > *:not(:first-child) {
+      margin-top: 1.38rem;
+    }
+    .text-wrapper {
+      margin-right: 0.63rem;
+      padding: 0.75rem 0;
+      background-color: #FF715E;
+    }
+    .font_2 {
+      font-size: 1rem;
+      font-family: Inter;
+      line-height: 0.97rem;
+      color: #000000;
+      font-family: 'Work Sans', sans-serif;
+    }
+    .text-wrapper_2 {
+      margin-right: 0.63rem;
+      padding: 0.75rem 0;
+      background-color: #ffaf51;
+      outline: none;
+    }
+    .text-wrapper_3 {
+      margin-right: 0.63rem;
+      padding: 0.75rem 0;
+      background-color: #FFEE51;
+    }
+    .text-wrapper_4 {
+      margin-right: 0.63rem;
+      padding: 0.75rem 0;
+      background-color: #8C6AC4;
+    }
+  
+
+
+
+
+  }
+  /* // 200px为头部加尾部高度 */
+
+   
+   /* // 宽度为1281-1366之间
+  @media (min-width: 1281px) and (max-width: 1366px) {
+    body {
+      background: red;
+    }
+  }
+   
+  /* // 最小宽度为1441  */
+  /* @media (min-width: 1441px) {
+    body {
+      background: green;
+    }
+  } */
+
+
+html {
+    font-size: 1.88rem;
+    font-weight: 500;
+    font-family: 'Work Sans', sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100vw;
+    height: 100vh;    
+  }
+  
+  body * {
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  button {
+    border-width: 0px;
+    border-radius: 0.63rem;
+  }
+  button:hover{
+    border:2px solid #FE9637;
+    box-shadow:rgba(251, 161, 72, 0.66) 0 0 5px;
+    transition:all .2s;
+  }
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .justify-start {
+    justify-content: flex-start;
+  }
+  
+  .justify-end {
+    justify-content: flex-end;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .justify-around {
+    justify-content: space-around;
+  }
+  
+  .justify-evenly {
+    justify-content: space-evenly;
+  }
+  
+  .items-start {
+    align-items: flex-start;
+  }
+  
+  .items-end {
+    align-items: flex-end;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .items-baseline {
+    align-items: baseline;
+  }
+  
+  .items-stretch {
+    align-items: stretch;
+  }
+  
+  .self-start {
+    align-self: flex-start;
+  }
+  
+  .self-end {
+    align-self: flex-end;
+  }
+  
+  .self-center {
+    align-self: center;
+  }
+  
+  .self-baseline {
+    align-self: baseline;
+  }
+  
+  .self-stretch {
+    align-self: stretch;
+  }
+  
+  .flex-1 {
+    flex: 1 1 0%;
+  }
+  
+  .flex-auto {
+    flex: 1 1 auto;
+  }
+  
+  .grow {
+    flex-grow: 1;
+  }
+  
+  .grow-0 {
+    flex-grow: 0;
+  }
+  
+  .shrink {
+    flex-shrink: 1;
+  }
+  
+  .shrink-0 {
+    flex-shrink: 0;
+  }
+  
+  .relative {
+    position: relative;
+  }
+
+  .page {
+    padding: 8.63rem 3.38rem 16.31rem 4rem;
+    background-color: #ffffff;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+  }
+  .font_1 {
+    font-size: 1.38rem;
+    font-family: Inter;
+    line-height: 1.63rem;
+    color: #000000;
+    font-family: 'Work Sans', sans-serif;
+  }
+  .text {
+    margin-top: 2rem;
+    color: #000000;
+    font-size: 1.13rem;
+    font-family: Inter;
+    line-height: 1.38rem;
+    text-align: center;
+    font-family: 'Work Sans', sans-serif;
+    
+  }
+  .group {
+    margin-top: 8.25rem;
+    padding: 0 1.88rem;
+  }
+  .space-y-22 > *:not(:first-child) {
+    margin-top: 1.38rem;
+  }
+  .text-wrapper {
+    margin-right: 0.63rem;
+    padding: 0.75rem 0;
+    background-color: #FF715E;
+  }
+  .font_2 {
+    font-size: 1rem;
+    font-family: Inter;
+    line-height: 0.97rem;
+    color: #000000;
+    font-family: 'Work Sans', sans-serif;
+  }
+  .text-wrapper_2 {
+    margin-right: 0.63rem;
+    padding: 0.75rem 0;
+    background-color: #ffaf51;
+    outline: none;
+  }
+  .text-wrapper_3 {
+    margin-right: 0.63rem;
+    padding: 0.75rem 0;
+    background-color: #FFEE51;
+  }
+  .text-wrapper_4 {
+    margin-right: 0.63rem;
+    padding: 0.75rem 0;
+    background-color: #8C6AC4;
+  }

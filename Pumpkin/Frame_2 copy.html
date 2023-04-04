@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>codefun</title>
+    <style>
+      a{
+      text-decoration: none;
+      }
+      </style>
+    <link rel="stylesheet" href="./Frame_2.css" />
+    <script type="text/javascript" src="./Frame_2.js"></script>
+  </head>
+  <body>
+    <div class="flex-col page"> 
+      <div class="flex-col items-center">
+        <span class="font_1">Umfrage</span>
+        <span class="font_1">2: 00</span>
+
+        <div id="countdown">2 : 00</div>
+        <script>
+                    
+            window.onload=function(){
+                var countdown=document.getElementById("countdown");
+                
+                var time=120;//30分钟换算成1800秒
+                                
+                setInterval(function(){
+                    time=time-1;
+                   var minute=parseInt(time/60);
+                   var second=parseInt(time%60);
+                    countdown.innerHTML= minute+' : '+ second+'';
+                    
+                    if(time<0){
+                      clearInterval(interval);
+                      window.location.href= "./Step2";
+                    };
+                  },1000);
+                    }
+        </script>
+                <script language="JavaScript" type="text/javascript">
+                  function Redirect(){
+                              window.location = "Step3.html";   //要跳转的页面
+                      }
+                  setTimeout('Redirect()', 120000);       //第二个参数是时间，单位毫秒
+            </script>
+      </div>
+      <span class="text">
+        Welche Tragwirkung stellt sich in der monolithischen Deckenplatte infolge einer vertikalen, konstanten
+        Flächenlast ein?
+        <br/>
+      </span>
+      <div class="flex-col group space-y-22">
+        <div class="flex-col justify-start items-center text-wrapper">
+          <a href="Step2_A.html">
+        <span class="font_2" >A: Kette von Einfeldträgern</span></a>
+        </div>
+        <div class="flex-col justify-start items-center text-wrapper_2">
+          <a href="Step2_B.html"> 
+          <span class="font_2">B: Durchlauftragwirkung</span></a>
+        </div>
+        <div class="flex-col justify-start items-center text-wrapper_3">
+          <a href="Step2_C.html">
+          <span class="font_2">C: Normalkrafttragwirkung</span></a>
+        </div>
+        <div class="flex-col justify-start items-center text-wrapper_4">
+          <a href="Step2_D.html">
+          <span class="font_2">D: Scheibentragwirkung</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
