@@ -23,8 +23,16 @@
     </div>
 
   <!--为Chart准备定义了宽高的DOM-->
-    <div class="echarts-box">
-    <div id="myEcharts" :style="{width: '75%', height: '300px',  margin: auto }"></div>
+    <!-- <div class="echartsBox" ref="echartsBox"> 初始化Echarts 峰华老师的方法 使用props传参 -->
+    <div id="myEcharts" ref="echartsBox" :style=" // muss hier id & ref gleich?
+    {
+      width: '75%',
+      height: '300px',
+      // margin: auto, 
+      // display: flex,
+      // justify-content: center,
+      // align-items: center 
+    }">
 
       <!-- //<canvas data-zr-dom-id="zr_0" //报错了
       // width:"293px",
@@ -66,7 +74,7 @@
   // referrerpolicy="no-referrer";
 
 import * as echarts from "echarts";
-import { reactive, onMounted, onUnmounted } from "vue";
+import { reactive, ref, onMounted, onUnmounted } from "vue";
 import axios from 'axios'
 
 export default {
@@ -79,8 +87,7 @@ export default {
           //带参数
           this.$router.push({path:'/Erklaerung'}) //成功跳转了！！okok!!
           //this.$router.push({name:"almond",params:{id:Chocolat}}) //传参 这里传不到欸
-      },
-
+      }
   },
   
     // axios.get('http://localhost:8000/question1').then(res => {
@@ -89,42 +96,46 @@ export default {
     //   // 获取response的数据，赋值给变量，这些变量用于下面配置图表的option中
     //   let yAxis = data.chart.yAxis; 
   
-  name: "echartsBox",
-
+  // name: "echartsBox", //didt work
+  // data() {
+  //   return {
+  //     state: []
+  //   };
+  // },
+  
   setup() {
-    const state = reactive({
-      dare:[]
-    })
-    /// 声明定义一下echart
-    let echart = echarts;
+    // const echartsBox = ref(null);
+    // const chart =ref(null); //更新的图表数据
+    // const props = defineProps({ //接受图表配置,把配置传递给echart this is 监听配置项变化
+    //   options:{
+    //     require: true,
+    //     type: Object,
+    //     default:{}, //更新配置
+    //   },
+    // })  
 
-    onMounted(() => {
-      initChart(); //initChart报错惹
-      axios.get('http://localhost:8000/question1/api').then(res => {
-        state.date=res.date
-      })
-    });
-
-    onUnmounted(() => {
-      echart.dispose;
-    });
-
-    // 发送axios请求，获取数据
-
-
-    
-    // 基础配置一下Echarts
-    function initChart() {
-      let chart = echart.init(document.getElementById("myEcharts"),); //initChart报错惹
-      // 把配置和数据放这里
-      chart.setOption({
-        title: {
-          text: "Umfrage",
-          color: "#FE9637",
-        },
+    var state = reactive({
+      data:[], //这里定义了data的类型是array
+      dataType: "json", //返回数据形式为json but didnt work?
+      option: {
+        // title: {
+        //   text: "Umfrage",
+        //   color: "#FE9637",
+        // },
         tooltip: {},
         legend: {
           //data: ["Auswahl"],
+          //series里面有name值， legend里面的data可以删掉
+        },
+        grid:{
+          left: '30%',
+          top: '10%',
+          right: 'auto', //ok了！？
+          // left: left,
+          // top: top,
+          // right: 'auto',
+          // bottom: 'auto',
+          containLebel: true //显示刻度，不显示就false
         },
 
         style: {
@@ -135,23 +146,24 @@ export default {
         },
 
         xAxis: {
+          type: 'category',
           data: ["A", "B", "C", "D"],
         },
-        yAxis: {},
+        yAxis: {
+          type: 'value',
+          //data: state.values, 这里不显示的 要在下面series显示
+        },
         series: [{
           name: "Auswahl",
           type: "bar",
-        //   axios.get('http://localhost:8000/question1').then(res => {
-        // console.log(res)  
-        //   data: res.data.data  //这里数据是一个数组的形似
-        //     }],
-          data: [], //到时要是由后端请求5, 19, 13, 27
-          // axios.get('http://localhost:8000/question1')then((res)=>{ console.log(res)})
+          data: [] ,
+          //If 传的是Proxy对象，proxy代理了Child对象，所以我们访问的是proxy代理对象的自身属性，因此不需要.value
+          //ref的值在 JS/TS 中读取和修改时，需要使用 .value获取，在模版中读取是，不需要使用 .value
           itemStyle: {
              //通常情况下：
             normal: {              
               //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
-              color: function (params) {
+              color: function (params) { 
                 var colorList = [
                   "#ff715e",
                   "#ffaf51",
@@ -161,20 +173,148 @@ export default {
                 ];
                 return colorList[params.dataIndex];
               },
-            },
+             },
             //鼠标悬停时：
             emphasis: {
               shadowBlur: 10,
               shadowOffsetX: 0,
               shadowColor: "rgba(251, 161, 72, 0.66)",
             }
-          }
-        }]
+          },
+      }]
+    }
+    })
+
+    // var state = ref({
+    //   data:[]
+    // })
+
+    /// 声明定义一下echart
+    let echart = echarts;
+
+    onMounted(() => {
+      initChart(); //initChart报错惹
+      // const chart = echarts.init(echartsBox.value); //加载echart
+      // chart.setOption(props.options); //监听配置项变化
+      axios.get('http://localhost:8000/question1')
+      .then(res => {
+        state.data = res.data;
+        state.option.series[0].data = res.date;
+        console.log(state.option)
+        console.log(res.data)
+        // $nextTick(() => {
+        //   initChart();
+        // });
+      })
+      .catch(error => {
+        console.log(error); //没有报错表示成功了！
       });
-      window.onresize = function() {
-        //自适应大小
+    });
+
+    // const { options } = toRefs(props);
+
+    // watch( //这里使用的是props
+    //   options, //options转化为ref 
+    //   (newOptions) => { //监听属性新变化的值和之前的值
+    //     chart.value.setOption(newOptions); //传给echart
+    //   },
+    //   {deep: true} //是否深度对比
+    // );
+
+    onUnmounted(() => {
+      echart.dispose;
+    });
+    
+    // 基础配置一下Echarts
+    function initChart() {
+      let chart = echart.init(document.getElementById("myEcharts"),); //initChart报错惹
+      // 把配置和数据放这里
+      chart.setOption(state.option)
+      //   // title: {
+      //   //   text: "Umfrage",
+      //   //   color: "#FE9637",
+      //   // },
+      //   tooltip: {},
+      //   legend: {
+      //     //data: ["Auswahl"],
+      //     //series里面有name值， legend里面的data可以删掉
+      //   },
+      //   grid:{
+      //     left: '30%',
+      //     top: '10%',
+      //     right: 'auto', //ok了！？
+      //     // left: left,
+      //     // top: top,
+      //     // right: 'auto',
+      //     // bottom: 'auto',
+      //     containLebel: true //显示刻度，不显示就false
+      //   },
+
+      //   style: {
+      //     width: '75%', 
+      //     height: '100%', 
+      //     margin: 0 , 
+      //     //到底写在哪里啊style@media
+      //   },
+
+      //   xAxis: {
+      //     type: 'category',
+      //     data: ["A", "B", "C", "D"],
+      //   },
+      //   yAxis: {
+      //     type: 'value',
+      //     //data: state.values, 这里不显示的 要在下面series显示
+      //   },
+      //   series: [{
+      //     name: "Auswahl",
+      //     type: "bar",
+      //     data: state.data,//[1,2,3,10], 
+      //     //If 传的是Proxy对象，proxy代理了Child对象，所以我们访问的是proxy代理对象的自身属性，因此不需要.value
+      //     //ref的值在 JS/TS 中读取和修改时，需要使用 .value获取，在模版中读取是，不需要使用 .value
+      //     itemStyle: {
+      //        //通常情况下：
+      //       normal: {              
+      //         //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+      //         color: function (params) { 
+      //           var colorList = [
+      //             "#ff715e",
+      //             "#ffaf51",
+      //             "#ffee51",
+      //             "#8c6ac4",
+      //             "#715c87",
+      //           ];
+      //           return colorList[params.dataIndex];
+      //         },
+      //        },
+      //       //鼠标悬停时：
+      //       emphasis: {
+      //         shadowBlur: 10,
+      //         shadowOffsetX: 0,
+      //         shadowColor: "rgba(251, 161, 72, 0.66)",
+      //       }
+      //     }
+      //   }]
+      // });
+      // window.onresize = function() {
+      //   //自适应大小
+      //   chart.resize();
+      // };
+
+      //Pink老师教的方法
+      window.addEventListener("resize", function(){
         chart.resize();
-      };
+      });
+
+      //搞不明白惹
+      // var chartWidth = myEcharts.offsetWidth; //id="myEcharts". 
+      // var chartHeight = myEcharts.offsetHeight;
+      // var chartWidth = chart.getWidth(); //  chart.setOption
+      // var chartHeight = chart.getHeight();
+
+      // // 计算图表的左上角位置
+      // var left = (myEchartsWidth - chartWidth) / 2;  //id="myEcharts"
+      // var top = (myEchartsHeight - chartHeight) / 2;
+
       // 这个方法报错了  Access to XMLHttpRequest at 'http://localhost:8000/question1' from origin 
       // 'http://localhost:5173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header 
       // is present on the requested resource.
@@ -195,6 +335,7 @@ export default {
     return { initChart, state};
   }
 };
+
   // mounted(){
   //   const h =document.createElement('script');
   //   h.type ='text/javascript';
@@ -276,8 +417,6 @@ export default {
 //       myChart.resize();
 //       document.body.width = "100vw";
 //     }
-
-    
 //     };
 //   },
 
@@ -343,7 +482,11 @@ export default {
 /* #main {
   width: 75%;
 } */
-
+/* .echartsBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
 /* @media screen and (min-width: 1024px) {
   #main {
     width: 50%;

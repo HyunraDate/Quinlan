@@ -31,20 +31,27 @@
 </template>
 
 <script>
-export default {
-    methods:{
-        goPage:function(){
-            //console.log(this.$router);
-            // this.$router.plus('/') 这里跳转不了欸
-            //this.$router.push({path:"/"}) //传入对象 但也跳转不了欸 push!唔系plus啊死蠢！
+import axios from 'axios';
 
-            //带参数
-            this.$router.push({path:'/Erklaerung'}) //成功跳转了！！ id就是Chocolat!
-            //this.$router.push({name:"almond",params:{id:Chocolat}}) //传参 这里传不到欸
-            // Chocolat is not defined (???)
-        }
+export default {
+  created(){
+    axios.get('http://localhost:8000/question1').then((res) =>{
+      console.log(res) 
+    })
+  },
+  methods:{
+    goPage:function(){
+      //console.log(this.$router);
+      // this.$router.plus('/') 这里跳转不了欸
+      //this.$router.push({path:"/"}) //传入对象 但也跳转不了欸 push!唔系plus啊死蠢！
+
+      //带参数
+      this.$router.push({path:'/Erklaerung'}) //成功跳转了！！ id就是Chocolat!
+      //this.$router.push({name:"almond",params:{id:Chocolat}}) //传参 这里传不到欸
+      // Chocolat is not defined (???)
     }
-}
+  }
+};
 </script>
 
 <style scoped>

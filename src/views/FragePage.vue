@@ -10,8 +10,6 @@
       </body>
     </div>
 </template> -->
-
-
 <script>
 // import { useStore } from '@store/index'
 // //先引入useRouter
@@ -75,30 +73,28 @@ function test(click){
 export default {
     methods:{
       option1:function(){
-            console.log(this.$router);
-            // this.$router.plus('/') 这里跳转不了欸
-            //this.$router.push({path:"/"}) //传入对象 但也跳转不了欸 push!唔系plus啊死蠢！
+        console.log(this.$router);
+        // this.$router.plus('/') 这里跳转不了欸
+        //this.$router.push({path:"/"}) //传入对象 但也跳转不了欸 push!唔系plus啊死蠢！
 
-            //带参数
-            this.$router.push({path:'/Ergebnis1'}) //成功跳转了！！okok!!
-            //this.$router.push({name:"almond",params:{id:Chocolat}}) //传参 这里传不到欸 // 试一下传right
+        //带参数
+        this.$router.push({path:'/Ergebnis1'}) //成功跳转了！！okok!!
+        //this.$router.push({name:"almond",params:{id:Chocolat}}) //传参 这里传不到欸 // 试一下传right
         },
 
         option2:function(){
-            console.log(this.$router);
-            // this.$router.plus('/') 这里跳转不了欸
-            //this.$router.push({path:"/"}) //传入对象 但也跳转不了欸 push!唔系plus啊死蠢！
+          console.log(this.$router);
+          // this.$router.plus('/') 这里跳转不了欸
+          //this.$router.push({path:"/"}) //传入对象 但也跳转不了欸 push!唔系plus啊死蠢！
 
-            //带参数
-            this.$router.push({path:'/Ergebnis2'}) //成功跳转了！！okok!!
-            //如果要动态传参
+          //带参数
+          this.$router.push({path:'/Ergebnis2'}) //成功跳转了！！okok!!
+          //如果要动态传参
 
-            //this.$router.push({name:"Ergebnis2",params:{id:A}}) //传参 这里传不到欸 // 试一下传worong
+          //this.$router.push({name:"Ergebnis2",params:{id:A}}) //传参 这里传不到欸 // 试一下传worong
         }
     }
-}
-
-    
+}    
 </script>
 
 <template>
@@ -106,13 +102,19 @@ export default {
 <div>
   <!-- <div class="flex-col page"> </div>  太占位啦！--> 
     <div class="flex-col items-center">  </div>
-      <span class="font_1">Umfrage</span>
+    <span class="font_1" style="{
+      margin: 0;
+      font-size: 1.38rem;
+      font-family: Inter;
+      line-height: 1.63rem;
+      color: #000000;
+      font-family: 'Work Sans', sans-serif;
+      }">Umfrage
+    </span>
   <router-view/>
 
 <!-- onload="run()" 这里加载不了 这个onload function欸--> 
-  
-    wird in <span id="spanId" style="color:#FE9637">60</span>Sekunden springen!
-
+<!-- wird in <span id="spanId" style="color:#FE9637">60</span>Sekunden springen! -->
 </div>
 
 <div>
@@ -154,4 +156,24 @@ Flächenlast ein?
 
 <style scoped>
 @import url("../css/halloween.css"); /*src = . */ 
+/* .font_1{ /* didnt work 
+  position: center;
+  } */
+
+/* 
+使用深度选择器来写使样式生效。
+有两种写法：
+
+.a >>> .b {}
+.a /deep/ .b
+当你子组件使用了 scoped 但在父组件又想修改子组件的样式可以 通过 >>> 来实现：
+
+<style scoped>
+.a >>> .b { /* ... 
+
+
+将会编译成
+.a[data-v-f3f3eg9] .b {
+  /* ... */
+
 </style>
