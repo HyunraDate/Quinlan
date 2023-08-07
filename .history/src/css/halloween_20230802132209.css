@@ -187,7 +187,8 @@
   .text-wrapper {
     margin-right: 0.63rem;
     padding: 0.75rem 0;
-    background-color: #FF715E;
+    /* background-color: #FF715E; */
+    background: #ffffff;
   }
   .font_2 {
     font-size: 1rem;
@@ -218,8 +219,7 @@
   padding-bottom: 1.5rem ;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-  /* background-color: #FB8DA0; */
-  background-color: #ffffff;
+  background-color: #FB8DA0;
 }
 
 /* inportant! space between every Options! */
